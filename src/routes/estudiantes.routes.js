@@ -2,7 +2,7 @@ const express = require('express');
 const {
   obtenerEstudiantes,
   crearEstudiante,
-} = require("../controllers/estudiantes.controllers.js");
+} = require("../controllers/estudiantes.controller.js");
 
 const router = express.Router();
 
