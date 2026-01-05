@@ -6,6 +6,8 @@ require("dotenv").config();
 const gradosRoutes = require("./routes/grados.routes");
 const estudiantesRoutes = require("./routes/estudiantes.routes");
 const usuariosRoutes = require("./routes/usuarios.routes");
+const cuotasRoutes = require("./routes/cuotas.routes");
+const authRoutes = require("./routes/auth.routes");
 
 const app = express();
 app.use(cors());
@@ -37,6 +39,10 @@ app.use(express.json());
 app.use("/api/grados", gradosRoutes);
 app.use("/api/estudiantes", estudiantesRoutes);
 app.use("/api/usuarios", usuariosRoutes);
+app.use("/api", cuotasRoutes);
+app.use("/api/auth", authRoutes);
+app.use(express.json());
+
 
 // prueba de servidor
 app.get("/", (req, res) => {

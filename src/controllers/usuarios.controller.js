@@ -25,7 +25,7 @@ const crearUsuario = async (req, res) => {
 
     const [result] = await pool.query(
       "INSERT INTO usuarios (usuario, password, nombre, rol, creado_por) VALUES (?, ?, ?, ?, ?)",
-      [usuario, hashedPassword, nombre, rol, creado_por]
+      [usuario, hashedPassword, nombre, rol, creado_por]  
     );
     res
       .status(201)
