@@ -8,10 +8,15 @@ const estudiantesRoutes = require("./routes/estudiantes.routes");
 const usuariosRoutes = require("./routes/usuarios.routes");
 const cuotasRoutes = require("./routes/cuotas.routes");
 const authRoutes = require("./routes/auth.routes");
+const asistenciaRoutes = require("./routes/asistencia.routes");
+const modulosRoutes = require("./routes/modulos.routes");
+const setInstitucion = require("./middlewares/set.institucion");
+const hikvisionRoutes = require("./routes/hikvision.routes");
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(setInstitucion);
 
 // conexion test
 (async () => {
@@ -36,12 +41,14 @@ app.use(express.json());
 //     ],
 //   });
 // });
+app.use("/api", hikvisionRoutes);
 app.use("/api/grados", gradosRoutes);
 app.use("/api/estudiantes", estudiantesRoutes);
 app.use("/api/usuarios", usuariosRoutes);
 app.use("/api", cuotasRoutes);
 app.use("/api/auth", authRoutes);
-app.use(express.json());
+app.use("/api/asistencia", asistenciaRoutes);
+app.use("/api", modulosRoutes);
 
 
 // prueba de servidor
@@ -50,7 +57,7 @@ app.get("/", (req, res) => {
 });
 
 //servidor
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.APP_PORT || process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
